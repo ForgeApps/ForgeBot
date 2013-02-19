@@ -8,8 +8,10 @@
 #   None
 #
 # Commands:
-#   <thing>++ - give thing some karma
-#   <thing>-- - take away some of thing's karma
+#   <thing>++(.*) - give thing some karma
+#   <thing>+=<points> - give thing <points> karma points
+#   <thing>--(.*) - take away some of thing's karma
+#   <thing>-=<points> - take away <points> of thing's karma
 #   hubot karma <thing> - check thing's karma (if <thing> is omitted, show the top 5)
 #   hubot karma empty <thing> - empty a thing's karma
 #   hubot karma best - show the top 5
@@ -75,14 +77,14 @@ class Karma
   
 module.exports = (robot) ->
   karma = new Karma robot
-  robot.hear /(\S+[^+\s])\+\+(\s|$)/, (msg) ->
+  robot.hear /(\S+[^+\s])\+(\+*)(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
-    karma.increment subject
+    karma.increment subject for [1..(msg.match[2].length)]
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
   
-  robot.hear /(\S+[^-\s])--(\s|$)/, (msg) ->
+  robot.hear /(\S+[^-\s])-(-*)(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
-    karma.decrement subject
+    karma.decrement subject for [1..(msg.match[2].length)]
     msg.send "#{subject} #{karma.decrementResponse()} (Karma: #{karma.get(subject)})"
   
   robot.respond /karma empty ?(\S+[^-\s])$/i, (msg) ->
