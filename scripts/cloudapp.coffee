@@ -6,7 +6,7 @@
 #
 # Configuration:
 #   None
-# 
+#
 # Commands:
 #   http://cl.ly/* - Detects the drop's type and displays it or prints its content if it's an image or text file respectively
 #
@@ -14,7 +14,7 @@
 #   lmarburger
 
 module.exports = (robot) ->
-  robot.hear /(https?:\/\/cl.ly\/image\/[A-Za-z0-9]+)(\/[^\/]+)?/i, (msg) ->
+  robot.hear /(https?:\/\/(cl.ly|mcph.at|kvg.me)\/image\/[A-Za-z0-9]+)(\/[^\/]+)?/i, (msg) ->
     return if msg.match[2]  # Ignore already embedded images.
 
     link = msg.match[1]
