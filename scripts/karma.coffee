@@ -87,12 +87,12 @@ module.exports = (robot) ->
     karma.decrement subject for [1..(msg.match[2].length)]
     msg.send "#{subject} #{karma.decrementResponse()} (Karma: #{karma.get(subject)})"
   
-  robot.hear /(\S+[^+\s])\+=(\s*.?)(\s|$)/, (msg) ->
+  robot.hear /(\S+[^+\s])\+=(\s*[0-9]+)(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
     karma.increment subject for [1..(parseInt(msg.match[2]))]
     msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
   
-  robot.hear /(\S+[^-\s])-=(\s*.?)(\s|$)/, (msg) ->
+  robot.hear /(\S+[^-\s])-=(\s*[0-9]+)(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
     karma.decrement subject for [1..(parseInt(msg.match[2]))]
     msg.send "#{subject} #{karma.decrementResponse()} (Karma: #{karma.get(subject)})"
