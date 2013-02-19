@@ -15,7 +15,7 @@
 
 module.exports = (robot) ->
   robot.hear /(https?:\/\/(cl.ly|mcph.at|kvg.me)\/image\/[A-Za-z0-9]+)(\/[^\/]+)?/i, (msg) ->
-    return if msg.match[2]  # Ignore already embedded images.
+    return if msg.match[3]  # Ignore already embedded images.
 
     link = msg.match[1]
     msg
