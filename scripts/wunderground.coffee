@@ -87,11 +87,12 @@ get_data = (robot, msg, location, service, query, cb, lifetime, stack=0) ->
 
 send_forecast = (msg, location, data) ->
   report = data.forecast.txt_forecast.forecastday[0]
-  msg.send "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})"
+  forecast_string = "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})\n"
   report = data.forecast.txt_forecast.forecastday[1]
-  msg.send "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})"
+  forecast_string += "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})\n"
   report = data.forecast.txt_forecast.forecastday[2]
-  msg.send "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})"
+  forecast_string += "#{report.title} in #{location}: #{report.fcttext} (#{formatted_ttl data})"
+  msg.send forecast_string
 
 send_radar = (msg, location, data) ->
   msg.send "#{data.radar.image_url}#.png"
