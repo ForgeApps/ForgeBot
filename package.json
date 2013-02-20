@@ -17,8 +17,7 @@
   "dependencies": {
     "hubot": ">=2.4.6",
     "hubot-scripts": ">= 2.4.1",
-    "optparse": "1.0.3",
-    "redis": "0.7.2"
+    "optparse": "1.0.3"
   },
 
   "engines": {
