@@ -33,7 +33,7 @@ nukes = [
 
 module.exports = (robot) ->
 
-  words = ["nuke", "nuclear", "diaf", "destroy", "destroyed"]
+  words = ["nukes", "nuke", "nuclear", "diaf", "destroy", "destroyed"]
   regex = new RegExp('(?:^|\\s)(' + words.join('|') + ')(?:\\s|\\.|\\?|!|$)', 'i');
 
   robot.hear regex, (msg) ->
