@@ -36,8 +36,6 @@ good_morning_jeff_mcfadden = (robot, msg, username) ->
 
   weather_api_url = "https://api.forecast.io/forecast/70e2c5f55ac79f93b5a8c408eb8a713e/33.6751,-112.2309"
 
-  DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
   msg.send "Good morning, " + username + "!"
 
   msg.send "Here's the upcoming weather:"
@@ -57,7 +55,8 @@ good_morning_jeff_mcfadden = (robot, msg, username) ->
 
         limit_output = 5;
 
-        for e of data['daily']['data']
+        for e in data['daily']['data']
+          DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
           d = new Date( e['time'] * 1000 );
 
           line_1 += DAYS[d.getDay()] + '' + ' | ';
