@@ -60,7 +60,7 @@ good_morning_jeff_mcfadden = (robot, msg, username) ->
         for e of data['daily']['data']
           d = new Date( e['time'] * 1000 );
 
-          line_1 += DAYS[e.getDay()] + '' + ' | ';
+          line_1 += DAYS[d.getDay()] + '' + ' | ';
           line_2 += ' ' + Math.round( e['temperatureMax'] )  + ' | ';
           line_3 += ' ' + Math.round( e['temperatureMin'] )  + ' | ';
 
