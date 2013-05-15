@@ -35,7 +35,7 @@ internetQuotes = [
   "The Internet? Is that thing still around?"
 ]
 
-homer_percent_chance = 0.15
+homer_percent_chance = 0.05
 
 module.exports = (robot) ->
   robot.hear /beer/i, (msg) ->
@@ -44,9 +44,9 @@ module.exports = (robot) ->
   robot.hear /bacon|bagel|barbecue|burger|candy|chocolate|donut|sandwich|breakfast|lunch|dinner|food|grub/i, (msg) ->
     if Math.random() < homer_percent_chance 
       msg.send "Mmmm... " + msg.match[0]
-  robot.hear /try/i, (msg) ->
-    if Math.random() < homer_percent_chance 
-      msg.send msg.random tryQuotes
+  # robot.hear /try/i, (msg) ->
+  #   if Math.random() < homer_percent_chance 
+  #     msg.send msg.random tryQuotes
   robot.hear /internet/i, (msg) ->
     if Math.random() < homer_percent_chance
       msg.send msg.random internetQuotes
