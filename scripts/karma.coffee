@@ -12,6 +12,7 @@
 #   <thing>+=<points> - give thing <points> karma points
 #   <thing>--(.*) - take away some of thing's karma
 #   <thing>-=<points> - take away <points> of thing's karma
+#   google+ - take away 1 point of google+ karma
 #   hubot karma <thing> - check thing's karma (if <thing> is omitted, show the top 5)
 #   hubot karma empty <thing> - empty a thing's karma
 #   hubot karma best - show the top 5
@@ -79,8 +80,12 @@ module.exports = (robot) ->
   karma = new Karma robot
   robot.hear /(\S+[^+\s])\+(\+*)(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
-    karma.increment subject for [1..(msg.match[2].length)]
-    msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
+    if "google" == subject
+      karma.decrement subject for [1..(msg.match[2].length)]
+      msg.send "#{subject} #{karma.decrementResponse()} (Karma: #{karma.get(subject)})"
+    else
+      karma.increment subject for [1..(msg.match[2].length)]
+      msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
   
   robot.hear /(\S+[^-\s])-(-*)(\s|$)/, (msg) ->
     subject = msg.match[1].toLowerCase()
