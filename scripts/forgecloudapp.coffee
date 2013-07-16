@@ -1,5 +1,6 @@
 # Description:
-#   Allow Hubot to show what's lurking behind a CloudApp link
+#   Allow Hubot to show what's lurking behind a CloudApp link.
+#   Updated 7/2013 to only grab links that are inline in a message.
 #
 # Dependencies:
 #   None
@@ -14,10 +15,11 @@
 #   lmarburger
 
 module.exports = (robot) ->
-  robot.hear /(https?:\/\/(cl.ly|mcph.at|kvg.me|benm.in|prstp.me|anvl.me)\/image\/[A-Za-z0-9]+)(\/[^\/]+)?/i, (msg) ->
-    return if msg.match[3]  # Ignore already embedded images.
+  robot.hear /([\s\S]*)(https?:\/\/(cl.ly|mcph.at|kvg.me|benm.in|prstp.me|anvl.me)\/image\/[A-Za-z0-9]+)(\/[^\/]+)?([\s\S]*)/i, (msg) ->
+    return if msg.match[4]  # Ignore already embedded images.
+    return if msg.match[1] == "" && msg.match[5] == "" # Ignore messages that flint will auto embed (just the image)
 
-    link = msg.match[1]
+    link = msg.match[2]
     msg
       .http(link)
       .headers(Accept: "application/json")
