@@ -60,7 +60,7 @@ good_morning_jeff_mcfadden = (robot, msg, username) ->
           d = new Date( e['time'] * 1000 );
 
           line_1 += DAYS[d.getDay()] + '' + ' | ';
-          if Math.round( e['temperatureMax'] ) > 100
+          if Math.round( e['temperatureMax'] ) >= 100
             space = ''
           else
             space = ' '
