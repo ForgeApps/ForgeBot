@@ -71,5 +71,5 @@ good_morning_jeff_mcfadden = (robot, msg, username) ->
         output = line_1 + "\n" + line_2 + "\n" + line_3;
         msg.send output
 
-      msg.send "And it wouldn't be a good morning without Kirk Bear!"
-      msg.send "http://anvl.me/image/1a421S3p0a3v"
+      # msg.send "And it wouldn't be a good morning without Kirk Bear!"
+      # msg.send "http://anvl.me/image/1a421S3p0a3v"
