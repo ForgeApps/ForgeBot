@@ -43,6 +43,9 @@ images = [
   "http://i.imgur.com/rBvJany.gif"
   ]
 
+boss_percent_chance = 0.10
+
 module.exports = (robot) ->
   robot.hear /like a boss|boss|like a baws|baws/i, (msg) ->
-    msg.send msg.random images
+    if Math.random() < boss_percent_chance 
+      msg.send msg.random images
